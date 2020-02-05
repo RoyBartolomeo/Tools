@@ -23,7 +23,8 @@ date = datetime.today() - timedelta(days = 1)
 
 # Channel IDs for: WSJ, NYT, FT, Economist, Atlantic, Quartz, the Verge
 channels = ['UCK7tptUDHh-RYDsdxO1-5QQ', 'UCqnbDFdCpuN8CMEg0VuEBqA', 'UCoUxsWakJucWg46KW5RsvPw',
-    'UC0p5jTq6Xx_DosDFxVXnWaQ', 'UCK0z0_5uL7mb9IjntOKi5XQ', 'UC9f78Z5hgtDt0n8JWyfBk8Q', 'UCddiUEpeqJcYeBxX1IVBKvQ']
+            'UC0p5jTq6Xx_DosDFxVXnWaQ', 'UCK0z0_5uL7mb9IjntOKi5XQ', 'UC9f78Z5hgtDt0n8JWyfBk8Q', 
+            'UCddiUEpeqJcYeBxX1IVBKvQ']
 
 # Google code for OAuth. This requires the client secrets file downloaded from the dev api console    
 CLIENT_SECRETS_FILE = Path('YOUR/PATH/client_secret.json')
