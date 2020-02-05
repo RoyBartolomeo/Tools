@@ -2,7 +2,7 @@
 
 # Author: Roy B
 # This program calls the New York Times Movie Review API and returns the NYT staff
-# critics picks for an user specified date range.
+# critics picks for a defined date range.
 
 import json
 import requests
