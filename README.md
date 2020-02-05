@@ -16,16 +16,16 @@ This requires an API key.
 
 ## movie_review.py
 
-This program calls the New York Times Movie Review API and returns the NYT staff critics picks for a defined date range. The user provides either an invidual date to search from or a range of dates to search between. The output contains Title, Release Date, and Summary of the movie.
+This program calls the New York Times Movie Review API and returns the NYT staff critics picks for a defined date range. The user provides either an invidual date to search from or a range of dates to search between.
 
 This requires an API key.
 
 ## playlist.py 
 
-This program interacts with the YouTube V3 API to search videos and create a playlist on the authenticated user account based on the search results. The user specifies search terms including search query, number of results, video length, new playlist name and playlist details.
+This program interacts with the YouTube V3 API to search videos and create a playlist on the authenticated user account based on the search results. The user provides inputs including search query, number of query results, video length, new playlist name and playlist details.
 
 This requires an API key and OAUTH client credentials.
 
 ## ssltest.py
 
-This program interacts with the Qualys SSL-Labs API to perform SSL tests on endpoints. The program prompts the user for a site to analyze, provides on-going status of the scan, and outputs each IP Address and Host for the website with their respective SSL test grade. The user then has to option to request a detailed report from the scan which will be written to disk.
+This program interacts with the Qualys SSL-Labs API to perform SSL tests on endpoints. The program prompts the user for a site to analyze, provides on-going status of the scan, and outputs each IP Address and Host for the website with their respective SSL test grade. The user then has the option to request a detailed report from the scan that will be written to disk.
