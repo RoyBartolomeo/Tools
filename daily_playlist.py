@@ -3,7 +3,7 @@
 # Author: Roy B
 # This searches youtube Channels for content posted in the
 # past 24 hours and creates a playlist of the videos found
-# on the authenticated users account.
+# to the authenticated users account.
 
 import os
 
