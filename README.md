@@ -1,6 +1,6 @@
 # Tools
 
-A handful of command line tools that interact with various APIs that I've written.
+Python command line tools that interact with various APIs that I've written.
 
 ## ssltest.py
 
@@ -9,8 +9,6 @@ This program interacts with the Qualys SSL-Labs API to perform SSL tests on endp
 ## playlist.py 
 
 This program interacts with the YouTube V3 API to search videos and create a playlist on the authenticated user's account based on the search results. The user is presented a variety of options throughout the program, including what to search for, how many results are wanted, how long the videos should be, the name of the playlist to create and playlist details.
-
-To get OAUTH credentials setup for the YouTube account, follow the instructions here https://developers.google.com/youtube/registering_an_application . The client secrets need to be exported in json format, renamed to client_secret.json and saved to the directory containing the program.
 
 This requires an API key and OAUTH client credentials.
 
