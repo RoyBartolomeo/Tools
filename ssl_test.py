@@ -4,7 +4,7 @@
 # This program interacts with the Qualys SSL-Labs API to perform SSL tests on endpoints. 
 # The program prompts the user for a site analyze, provides on-going status of the scan, and 
 # outputs each IP Address and Host for the website with their respective SSL test grade. The user 
-# then has to option to request a detailed report from the scan and the detailed report will be written to disk.
+# then has to option to request a detailed report from the scan that will be written to disk.
 
 import datetime
 import json
