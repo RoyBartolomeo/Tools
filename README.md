@@ -4,7 +4,7 @@ Python command line tools that interact with various APIs that I've written.
 
 ## daily_playlist.py
 
-This program interacts with the YouTube V3 API to search YouTube Channels for content posted in the past 24 hours and creates a playlist of the videos found on the authenticated user account. I schedule this to run every 24 hours on my host machine to create a daily feed of videos from sources I'm interested. The tool is currently coded to pull videos from various news sources but can be configured with any Youtube Channel IDs.
+This program interacts with the YouTube V3 API to search YouTube Channels for content posted in the past 24 hours and creates a playlist of the videos found on the authenticated user account. I schedule this to run every 24 hours on my host machine to create a daily feed of videos from sources I'm interested in. The tool is currently coded to pull videos from various news sources but can be configured with any YouTube Channel IDs.
 
 This requires an API key and OAUTH client credentials.
 
