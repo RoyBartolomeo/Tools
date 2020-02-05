@@ -1,11 +1,14 @@
 #!/usr/bin/python3
 
 # Author: Roy B
-# This builds a playlist on the authenticated users account based on search parameters
-# presented to the user at runtime.
+# This searches youtube Channels for content posted in the
+# past 24 hours and creates a playlist of the videos found
+# on the authenticated users account.
 
 import os
 
+from pathlib import Path
+from datetime import datetime, timedelta
 import google.oauth2.credentials
 import google_auth_oauthlib.flow
 from googleapiclient.discovery import build
@@ -15,15 +18,23 @@ from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
 
+#set the time to search for videos created in the last 24 hours
+date = datetime.today() - timedelta(days = 1)
 
-# Google code for OAuth. This requires the client secrets file downloaded from the dev api console
-    
-CLIENT_SECRETS_FILE = 'client_secret.json'
+# Channel IDs for: WSJ, NYT, FT, Economist, Atlantic, Quartz
+channels = ['UCK7tptUDHh-RYDsdxO1-5QQ', 'UCqnbDFdCpuN8CMEg0VuEBqA', 'UCoUxsWakJucWg46KW5RsvPw',
+    'UC0p5jTq6Xx_DosDFxVXnWaQ', 'UCK0z0_5uL7mb9IjntOKi5XQ', 'UC9f78Z5hgtDt0n8JWyfBk8Q']
+
+# Google code for OAuth. This requires the client secrets file downloaded from the dev api console    
+CLIENT_SECRETS_FILE = Path('YOUR/PATH/client_secret.json')
 DEVELOPER_KEY = 'YOUR DEVELOPER KEY'
 SCOPES = ['https://www.googleapis.com/auth/youtube']
 API_SERVICE_NAME = 'youtube'
 API_VERSION = 'v3'
 
+videos = []
+
+# Call the Search API and return a list of video IDs
 def youtube_search():
   youtube = build(API_SERVICE_NAME, API_VERSION,
     developerKey=DEVELOPER_KEY)
@@ -31,18 +42,14 @@ def youtube_search():
   # Call the search.list method to retrieve results matching the specified
   # query term.
   search_response = youtube.search().list(
-    q=input('Search: '),
     part='id,snippet',
-    maxResults=input('Max Results: '),
+    channelId=channel,
+    publishedAfter=str(date.isoformat('T') + 'Z'), #RFC 3339 format
     type='video',
-    safeSearch='none',
-    videoDuration=input('Length - any|long|medium|short: ')
+    safeSearch='none'
   ).execute()
 
-  videos = []
-
-  # Add each result to the appropriate list, and then display the lists of
-  # matching videos, channels, and playlists.
+  # Append return values to the videos list
   for search_result in search_response.get('items', []):
     videos.append(search_result['id']['videoId'])
 
@@ -51,7 +58,7 @@ def youtube_search():
 # Authorize the request and store authorization credentials. If the credential file doesn't exist it will
 # open a link to authorize the account. 
 def get_authenticated_service():
-  credential_path = os.path.join('./', 'credential_sample.json')
+  credential_path = Path('YOUR/PATH/credential_sample.json')
   store = Storage(credential_path)
   credentials = store.get()
   if not credentials or credentials.invalid:
@@ -59,12 +66,12 @@ def get_authenticated_service():
     credentials = tools.run_flow(flow, store)
   return build(API_SERVICE_NAME, API_VERSION, credentials=credentials)
 
+# Add a new playlist to the user account and return the playlist ID
 def add_playlist(youtube):
-  
   body = dict(
     snippet=dict(
-      title=input('Playlist Name: '),
-      description=input('Playlist Description: ')
+      title=date.strftime('%x'),
+      description='Recent News'
     ),
     status=dict(
       privacyStatus='public'
@@ -78,10 +85,10 @@ def add_playlist(youtube):
 
   return(playlists_insert_response['id'])
 
-def add_video(youtube):
-
+# Add videos to the user playlist
+def add_video(user):
     for i in range(len(videos)):
-        request = youtube.playlistItems().insert(
+        request = user.playlistItems().insert(
             part="snippet",
             body={
             "snippet": {
@@ -96,17 +103,17 @@ def add_video(youtube):
         )
         request.execute()
 
-if __name__ == '__main__':
+if __name__ == '__main__':  
+    user = get_authenticated_service()
 
-  youtube = get_authenticated_service()
+    try:
+        for channel in channels:       
+            videos = youtube_search()
+        playlistId = add_playlist(user)    
+        add_video(user)
+        print('Playlist Created')
 
-  try:       
-    videos = youtube_search()
-    playlistId = add_playlist(youtube)    
-    add_video(youtube)
-    print('Playlist Created')
-
-  except HttpError as error:
-    print(error)
+    except HttpError as error:
+        print(error)
 
   

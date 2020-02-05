@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-import requests, json, sys
+
+# Author: Roy B
+# This program calls the New York Times Movie Review API and returns the NYT staff
+# critics picks for an user specified date range.
+
+import json
+import requests
+import sys
 
 results = []
 
