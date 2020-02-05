@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
 # Author: Roy B
-# This builds a playlist on the authenticated users account based on search parameters
-# presented to the user at runtime.
+# This builds a playlist on the authenticated user account based on search parameters
+# provided by the user while running.
 
 import os
 

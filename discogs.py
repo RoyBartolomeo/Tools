@@ -3,7 +3,7 @@
 # Author: Roy B
 # This program calls the Discogs Search API to find Albums, Compilations, and Mixes for a particular artist. 
 # The results are displayed sorted by the year the music was released. This program runs continuously 
-# until the user enters quit.
+# until the user enters 'quit'.
 
 import json 
 import requests
