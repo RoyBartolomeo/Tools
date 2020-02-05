@@ -21,7 +21,7 @@ def getReleases():
         sys.exit()
 
     url = 'https://api.discogs.com/database/search?artist={}&format=Album&per_page=100'.format(text)
-    headers = {'User-Agent': '"MunsonDiscog/1.0"', 'Authorization':'Discogs token=YOUR TOKEN HERE'}
+    headers = {'User-Agent': '"UserDiscog/1.0"', 'Authorization':'Discogs token=YOUR TOKEN HERE'}
     response = requests.get(url, headers = headers)
     response.raise_for_status()
 
@@ -36,7 +36,7 @@ def getReleases():
             continue
 
     url = 'https://api.discogs.com/database/search?artist={}&format=Mixed&per_page=100'.format(text)
-    headers = {'User-Agent': '"MunsonDiscog/3.0"', 'Authorization':'Discogs token=YOUR TOKEN HERE'}
+    headers = {'User-Agent': '"UserDiscog/3.0"', 'Authorization':'Discogs token=YOUR TOKEN HERE'}
     response = requests.get(url, headers = headers)
     response.raise_for_status()
     mixData = json.loads(response.text)
@@ -50,7 +50,7 @@ def getReleases():
             continue
 
     url = 'https://api.discogs.com/database/search?artist={}&format=Compilation&per_page=100'.format(text)
-    headers = {'User-Agent': '"MunsonDiscog/3.0"', 'Authorization':'Discogs token=YOUR TOKEN HERE'}
+    headers = {'User-Agent': '"UserDiscog/3.0"', 'Authorization':'Discogs token=YOUR TOKEN HERE'}
     response = requests.get(url, headers = headers)
     response.raise_for_status()
     compData = json.loads(response.text)
